@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-import File    from "@/app/components/Files";
+import Sidebar from "@/app/components/Sidebar";
 import Editor  from "@/app/components/Editor";
 
 import useFile from "@/app/hooks/useFile";
@@ -11,7 +11,7 @@ import Icon    from "@/config/icons";
 export default function Home()
 {
     const [ files, setFiles ]   = useState([]);
-    const { addFile, getFiles } = useFile(setFiles);
+    const { addFile, removeFile, getFiles } = useFile(setFiles);
 
     const [ selectedFile, setSelectedFile ] = useState(false);
 
@@ -24,31 +24,30 @@ export default function Home()
 
     return (
         <>
-            <File.Root>
-                <File.Body>
-                    <button onClick={() => {setIsOpen(true)}} className="btn btn-default text-center text-white rounded-circle w-[40px] h-[40px]">
-                        <Icon.File/>
-                    </button>
-                    <button className="btn btn-default text-center text-white rounded-circle w-[40px] h-[40px]">
-                        <Icon.Close/>
-                    </button>
+            <Sidebar.Root>
+                <Sidebar.Body>
                     <button onClick={() => setSelectedFile(false)} className="btn btn-default text-center text-white rounded-circle w-[40px] h-[40px]">
-                        <Icon.Home/>
+                        <span className="d-flex gap-2"><Icon.Home/>Home</span>
                     </button>
-                </File.Body>
-                {getFiles().length > 0 && (
-                    getFiles().map((value, index) => (
-                        <span 
-                            id={value.name} 
-                            key={value.name} 
-                            className="btn btn-default text-light-0"
-                            onClick={() => {setSelectedFile(value)}}
-                        >
-                            {value.name+'.'+value.type}
-                        </span>
-                    ))
-                )}
-            </File.Root>
+                    <button onClick={() => {setIsOpen(true)}} className="btn btn-default text-center text-white rounded-circle w-[40px] h-[40px]">
+                        <Icon.File/>Add file
+                    </button>
+                    <Sidebar.Section Title="Files">
+                        {getFiles().length > 0 && (
+                            getFiles().map((value, index) => (
+                                <span 
+                                    id={value.name} 
+                                    key={index} 
+                                    className="btn btn-default text-light-0"
+                                    onClick={() => {setSelectedFile(value)}}
+                                >
+                                    {value.name+'.'+value.type}
+                                </span>
+                            ))
+                        )}
+                    </Sidebar.Section>
+                </Sidebar.Body>
+            </Sidebar.Root>
 
             {isOpen && (
                 <div id="add-modal" className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 ${isOpen ? '' : 'hidden'}" style={{zIndex:"999"}}>
@@ -91,9 +90,20 @@ export default function Home()
                 {selectedFile !== undefined && selectedFile !== null && selectedFile !== false ? (
                     <>
                         <nav className="d-flex w-100 bg-dark-1 gap-2">
-                            <button className="btn btn-default rounded-0 bg-dark-0 text-light-0">
+
+                            <div className="d-flex gap-1 rounded-0 bg-dark-0 text-light-0 p-2">
                                 <span>./{selectedFile.name}.{selectedFile.type}</span>
-                            </button>
+                                <button 
+                                    className="d-flex justify-content-center align-items-center text-red-500 rounded-circle border-[1px] w-[25px] h-[25px] border-dark-1"
+                                    onClick={() => {
+                                        removeFile(selectedFile.name+'.'+selectedFile.type);
+                                        setSelectedFile(false)
+                                    }}
+                                >
+                                    <Icon.Close/>
+                                </button>
+                            </div>
+
                         </nav>
                         <div className="d-flex w-100 bg-dark-0 text-light-0 rounded-[20px]">
                             <Editor

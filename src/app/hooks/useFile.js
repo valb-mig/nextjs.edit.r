@@ -1,5 +1,3 @@
-'use client';
-
 const useFile = (setFiles) => {
 
     const getFiles = () => {
@@ -29,10 +27,6 @@ const useFile = (setFiles) => {
         }
 
         return files;
-    }
-
-    const getFile = (name, type) => {
-        return localStorage.getItem('file['+name+'.'+type+']');
     }
 
     const addFile = (formData) => {
@@ -68,6 +62,7 @@ const useFile = (setFiles) => {
 
     const removeFile = (name) => {
         localStorage.removeItem('file['+name+']');
+        setFiles(getFiles());
     }
 
     return { getFiles, addFile, editFile, removeFile };
