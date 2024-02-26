@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 import Sidebar from "@/app/components/Sidebar";
 import Editor  from "@/app/components/Editor";
+import Button  from "@/app/components/Button";
 
 import useFile from "@/app/hooks/useFile";
 import Icon    from "@/config/icons";
@@ -26,12 +27,16 @@ export default function Home()
         <>
             <Sidebar.Root>
                 <Sidebar.Body>
-                    <button onClick={() => setSelectedFile(false)} className="btn btn-default text-center text-white rounded-circle w-[40px] h-[40px]">
-                        <span className="d-flex gap-2"><Icon.Home/>Home</span>
-                    </button>
-                    <button onClick={() => {setIsOpen(true)}} className="btn btn-default text-center text-white rounded-circle w-[40px] h-[40px]">
-                        <Icon.File/>Add file
-                    </button>
+                    <Button 
+                        OnClick={() => setSelectedFile(false)}
+                        Icon={<Icon.Home/>}
+                        Title="Home"
+                    />
+                    <Button 
+                        OnClick={() => {setIsOpen(true)}}
+                        Icon={<Icon.File/>}
+                        Title="Add file"
+                    />
                     <Sidebar.Section Title="Files">
                         {getFiles().length > 0 && (
                             getFiles().map((value, index) => (
@@ -50,9 +55,9 @@ export default function Home()
             </Sidebar.Root>
 
             {isOpen && (
-                <div id="add-modal" className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 ${isOpen ? '' : 'hidden'}" style={{zIndex:"999"}}>
+                <div id="add-modal" className="d-flex fixed w-100 h-100 items-center justify-center bg-black bg-opacity-50 ${isOpen ? '' : 'hidden'}" style={{zIndex:"999"}}>
                     <form 
-                        className="d-flex flex-column p-2 w-[30vw] rounded bg-dark-0 border-[1px] border-dark-1" 
+                        className="d-flex flex-column p-2 w-[30vw] mb-[80vh] rounded bg-dark-0 border-[1px] border-dark-1" 
                         onSubmit={(e) => {
                             e.preventDefault(); 
                             addFile(formData);
@@ -79,7 +84,7 @@ export default function Home()
                                     body:"",
                                     type:"" 
                                 })}}>
-                                Voltar
+                                Back
                             </button>
                         </div>
                     </form>
