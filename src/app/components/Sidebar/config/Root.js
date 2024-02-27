@@ -5,7 +5,7 @@ const SidebarRoot = ({children}) => {
                 {children}
             </div>
             <span className="d-flex justify-content-center w-100 text-dark-3">
-                made by mig
+                <small><i>made by mig</i></small>
             </span>
         </div>
     );

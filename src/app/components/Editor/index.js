@@ -3,42 +3,22 @@
 import React, { useState, useEffect } from 'react';
 
 import MonacoEditor from '@monaco-editor/react';
-import useFile      from "@/app/hooks/useFile";
+import useFile      from '@/app/hooks/useFile';
+import getLanguage  from '@/config/utils/getLanguage';
 
 const Editor = ({ lang, selectedFile, setFiles }) => {
 
-  const { editFile } = useFile(setFiles);
+  const { editFile }    = useFile(setFiles);
   const [code, setCode] = useState(content);
 
-  const getLanguade = (extension) => {
+  useEffect(() => {
+    console.log(selectedFile);
+    setCode(selectedFile.body)
+  }, [selectedFile]);
 
-    let language = "";
-
-    switch(extension) {
-      case 'js':
-        language = "javascript"
-        break;
-      case 'php':
-        language = "php"
-        break;
-      case 'txt':
-        language = "markdown"
-        break;
-      default:
-        language = "markdown"
-        break;
-    }
-
-    return language;
-  }
-
-  const getCode = () => {
-    return selectedFile.body;
-  }
-
-  const handleEditorChange = (newValue, e) => setCode(newValue);
-
-  /* Keyboard Actions */
+  /* 
+  *   Keyboard Actions 
+  */
 
   useEffect(() => {
     function handleKeyDown(event) {
@@ -48,7 +28,6 @@ const Editor = ({ lang, selectedFile, setFiles }) => {
             event.preventDefault();
         }
     }
-
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
@@ -56,15 +35,17 @@ const Editor = ({ lang, selectedFile, setFiles }) => {
     };
   }, [selectedFile, code]);
 
-  /* Component */
+  /* 
+  *   Component 
+  */
 
   return (
     <div className='d-flex w-100 h-[100vh]'>
       <MonacoEditor
-        language={getLanguade(lang)} 
+        language={getLanguage(lang).name} 
         theme="vs-dark"
-        value={getCode()}
-        onChange={handleEditorChange}
+        value={selectedFile.body}
+        onChange={(newValue, e) => setCode(newValue)}
         options={{
           automaticLayout: true,
           fontSize: 16,

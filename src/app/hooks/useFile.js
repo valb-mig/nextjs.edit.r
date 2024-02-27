@@ -40,9 +40,9 @@ const useFile = (setFiles) => {
                 body: formData.body,
                 type: formData.name.split('.').pop()
             }));
-    
-            setFiles(getFiles());
         }
+        
+        setFiles(getFiles());
     }
 
     const editFile = (file) => {
