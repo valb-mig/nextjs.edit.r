@@ -40,21 +40,19 @@ const Editor = ({ lang, selectedFile, setFiles }) => {
   */
 
   return (
-    <div className='d-flex w-100 h-[100vh]'>
-      <MonacoEditor
-        language={getLanguage(lang).name} 
-        theme="vs-dark"
-        value={selectedFile.body}
-        onChange={(newValue, e) => setCode(newValue)}
-        options={{
-          automaticLayout: true,
-          fontSize: 16,
-          minimap: {
-            enabled: false 
-          }
-        }}
-      />
-    </div>
+    <MonacoEditor
+      language={getLanguage(lang).name} 
+      theme="vs-dark"
+      value={selectedFile.body}
+      onChange={(newValue, e) => setCode(newValue)}
+      options={{
+        automaticLayout: true,
+        fontSize: 16,
+        minimap: {
+          enabled: false 
+        }
+      }}
+    />
   );
 };
 
