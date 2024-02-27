@@ -157,10 +157,10 @@ export default function Home()
                 </div>
             )}
                     
-            <section id="content" className="w-100 h-100 bg-dark-0">
+            <section id="content" className="bg-dark-0 flex flex-col w-full">
                 {selectedFile !== undefined && selectedFile !== null && selectedFile !== false ? (
                     <>
-                        <nav className="d-flex w-100 bg-dark-1 gap-2">
+                        <nav className="d-flex bg-dark-1 gap-2">
 
                             <div className="d-flex gap-1 rounded-0 bg-dark-0 text-light-0 p-2">
                                 <span className="d-flex gap-1 align-items-center">
@@ -175,13 +175,11 @@ export default function Home()
                             </div>
 
                         </nav>
-                        <div className="d-flex w-100 bg-dark-0 text-light-0 rounded-[20px]">
-                            <Editor
-                                lang={selectedFile.type}
-                                selectedFile={selectedFile}
-                                setFiles={setFiles}
-                            />
-                        </div>
+                        <Editor
+                            lang={selectedFile.type}
+                            selectedFile={selectedFile}
+                            setFiles={setFiles}
+                        />
                     </>
                 ):(
                     <>
