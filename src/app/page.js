@@ -47,7 +47,7 @@ const Home = () => {
                                     <Icon.Close/>
                                 </button>
                             </div>
-                            <Button Icon={<Icon.Execute/>} OnClick={() => runCode()} Style="w-[40px] h-[40px]"/>
+                            <Button Icon={<Icon.Execute/>} OnClick={() => runCode()} Style="w-full h-[40px]"/>
                         </nav>
                         <Editor lang={file.type}/>
                         {debug != "" && (
