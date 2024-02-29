@@ -34,7 +34,7 @@ const Home = () => {
         <>
             <Layout>
                 {Object.keys(file).length !== 0 ? (
-                    <div className="flex flex-col w-full h-full overflow-y-hidden">
+                    <div className="flex flex-col w-full h-full overflow-y-hidden relative">
                         <nav className="flex justify-content-between align-items-center bg-dark-1 gap-2 border-b-[20px] border-dark-0">
                             <div className="flex gap-1 rounded-0 bg-dark-0 text-light-0 p-2">
                                 <span className="flex gap-1 align-items-center">
