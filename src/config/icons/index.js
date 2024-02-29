@@ -48,6 +48,8 @@ import {
     IoLogoJavascript 
 } from "react-icons/io5";
 
+import { BiMinus } from "react-icons/bi";
+
 const Icon = {
     Tag:        AiFillTag,
     Sun:        BsFillSunFill,
@@ -70,7 +72,8 @@ const Icon = {
     Md:         FaMarkdown,
     Gear:       FaGear,
     Comma:      FiCommand,
-    Execute:    FaCaretRight
+    Execute:    FaCaretRight,
+    Minus:      BiMinus
 }
 
 export default Icon;
