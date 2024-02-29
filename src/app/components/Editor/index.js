@@ -1,20 +1,22 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import { useGlobalContext } from '@/config/context/store';
 
-import MonacoEditor from '@monaco-editor/react';
+import MonacoEditor, { loader } from '@monaco-editor/react';
 import useFile      from '@/app/hooks/useFile';
-import getLanguage  from '@/config/utils/getLanguage';
+import getLanguage  from '@/utils/helpers/getLanguage';
 
-const Editor = ({ lang, selectedFile, setFiles }) => {
+const Editor = ({ setFiles }) => {
 
-  const { editFile }    = useFile(setFiles);
-  const [code, setCode] = useState(content);
+  const { file } = useGlobalContext();
+  const { editFile } = useFile(setFiles);
+  const [code, setCode] = useState(file.body);
 
   useEffect(() => {
-    console.log(selectedFile);
-    setCode(selectedFile.body)
-  }, [selectedFile]);
+    console.log("[Editor]: "+file.name);
+    setCode(file.body)
+  }, [file]);
 
   /* 
   *   Keyboard Actions 
@@ -23,9 +25,8 @@ const Editor = ({ lang, selectedFile, setFiles }) => {
   useEffect(() => {
     function handleKeyDown(event) {
         if (event.key === 's' && event.ctrlKey) {
-            console.log('saved');
-            editFile({...selectedFile, body:code});
-            event.preventDefault();
+          editFile({...file, body:code});
+          event.preventDefault();
         }
     }
     document.addEventListener('keydown', handleKeyDown);
@@ -33,21 +34,33 @@ const Editor = ({ lang, selectedFile, setFiles }) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [selectedFile, code]);
+  }, [file, code]);
 
   /* 
   *   Component 
   */
 
+  loader.init().then((monaco) => {
+    monaco.editor.defineTheme('myTheme', {
+        base: 'vs-dark',
+        inherit: true,
+        rules: [],
+        colors: {
+            'editor.background': '#000000',
+        },
+    });
+  });
+
   return (
     <MonacoEditor
-      language={getLanguage(lang).name} 
-      theme="vs-dark"
-      value={selectedFile.body}
+      theme='myTheme'
+      language={getLanguage(file.type).name} 
+      value={file.body}
       onChange={(newValue, e) => setCode(newValue)}
       options={{
         automaticLayout: true,
-        fontSize: 16,
+        fontFamily: "CaskaydiaCove Nerd Font",
+        fontSize: 20,
         minimap: {
           enabled: false 
         }
