@@ -6,6 +6,10 @@ import {
 } from 'react-icons/ai';
 
 import { 
+    FiCommand 
+} from "react-icons/fi";
+
+import { 
     BsFillSunFill,
     BsFillMoonFill,
     BsDot
@@ -26,7 +30,8 @@ import {
     FaMagnifyingGlass,
     FaTrash,
     FaFile,
-    FaGear
+    FaGear,
+    FaCaretRight
 } from 'react-icons/fa6';
 
 import {
@@ -44,7 +49,6 @@ import {
 } from "react-icons/io5";
 
 const Icon = {
-
     Tag:        AiFillTag,
     Sun:        BsFillSunFill,
     Moon:       BsFillMoonFill,
@@ -64,7 +68,9 @@ const Icon = {
     Javascript: IoLogoJavascript,
     Php:        FaPhp,
     Md:         FaMarkdown,
-    Gear:       FaGear
+    Gear:       FaGear,
+    Comma:      FiCommand,
+    Execute:    FaCaretRight
 }
 
 export default Icon;
