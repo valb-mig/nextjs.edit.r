@@ -46,7 +46,7 @@ const Layout = ({ children }) => {
     useEffect(() => {
         function handleKeyDown(event) {
 
-            if (event.key === 'H' && event.shiftKey) {
+            if (event.key === 'O' && event.shiftKey && event.altKey) {
 
                 router.push('/');
                 console.info('[shift + H ]: Go Home');
