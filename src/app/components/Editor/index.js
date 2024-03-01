@@ -1,22 +1,32 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { useGlobalContext } from '@/config/context/store';
+import { useGlobalContext } from '@/config/context/global/store';
 
 import MonacoEditor, { loader } from '@monaco-editor/react';
 import useFile      from '@/app/hooks/useFile';
 import getLanguage  from '@/utils/helpers/getLanguage';
 
-const Editor = ({ setFiles }) => {
+const Editor = ({ file }) => {
 
-  const { file } = useGlobalContext();
-  const { editFile } = useFile(setFiles);
+  const { editFile } = useFile();
+
   const [code, setCode] = useState(file.body);
 
   useEffect(() => {
-    console.log("[Editor]: "+file.name);
+    console.log("[Editor]: "+file.name+"."+file.type);
     setCode(file.body)
   }, [file]);
+
+  const editCode = (newValue) => {
+    
+    setCode(newValue);
+
+    if(file.state == "static")
+    {
+      editFile(file, {...file, state:"modified"});
+    }
+  }
 
   /* 
   *   Keyboard Actions 
@@ -24,8 +34,8 @@ const Editor = ({ setFiles }) => {
 
   useEffect(() => {
     function handleKeyDown(event) {
-        if (event.key === 's' && event.ctrlKey) {
-          editFile({...file, body:code});
+        if ((event.key === 's' || event.key === 'S') && event.ctrlKey) {
+          editFile(file, {...file, body:code, state:"static"});
           event.preventDefault();
         }
     }
@@ -56,7 +66,7 @@ const Editor = ({ setFiles }) => {
       theme='myTheme'
       language={getLanguage(file.type).name} 
       value={file.body}
-      onChange={(newValue, e) => setCode(newValue)}
+      onChange={(newValue, e) => editCode(newValue)}
       options={{
         automaticLayout: true,
         fontFamily: "CaskaydiaCove Nerd Font",

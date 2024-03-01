@@ -1,4 +1,4 @@
-import { useGlobalContext } from '@/config/context/store';
+import { useGlobalContext } from '@/config/context/global/store';
 
 const useFile = () => {
 
@@ -22,9 +22,10 @@ const useFile = () => {
                         if (dataString) {
                             const data = JSON.parse(dataString);
                             files.push({
-                                name: data.name,
-                                body: data.body,
-                                type: data.type
+                                name:  data.name,
+                                body:  data.body,
+                                type:  data.type,
+                                state: data.state
                             });
                         }
                     }
@@ -37,8 +38,6 @@ const useFile = () => {
 
     const addFile = (file) => {
 
-        console.info('[Add]');
-
         if(file !== undefined && file !== null && file !== "")
         {
             let name = file.split('.').slice(0, -1).join('.');
@@ -47,7 +46,8 @@ const useFile = () => {
             localStorage.setItem(`file[${file}]`, JSON.stringify({
                 name: name,
                 body: "",
-                type: type
+                type: type,
+                state: "static"
             }));
         }
         else
@@ -55,31 +55,33 @@ const useFile = () => {
             console.error("[Erro]");
         }
     
+        console.info('[Add]: ',file);
+
         // Update home useState
         setStorage(getFiles());
     }
 
-    const editFile = (editedFile) => {
+    const editFile = (file, editedFile) => {
 
         let item = `file[${file.name+'.'+file.type}]`;
 
         console.log("[Edit]: "+item);
 
         let updatedFile = {
-            name: editedFile.name,
-            body: editedFile.body,
-            type: editedFile.type
+            name:  editedFile.name,
+            body:  editedFile.body,
+            type:  editedFile.type,
+            state: editedFile.state
         }
         localStorage.setItem(item, JSON.stringify(updatedFile));
 
         console.log("[Edited]: ", updatedFile);
 
         // Update home useState
-        setFile(updatedFile);
         setStorage(getFiles());
     }
 
-    const removeFile = () => {
+    const removeFile = (file) => {
 
         console.log('[Remove]: '+file.name+'.'+file.type);
         localStorage.removeItem('file['+file.name+'.'+file.type+']');

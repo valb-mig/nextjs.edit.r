@@ -23,11 +23,11 @@ async function executeCode(file) {
         run_memory_limit: -1
     }
 
-    console.log("[Api]: ", requestObj);
+    console.log("[Req]: ", requestObj);
 
     return axios.post(apiUrl+'/execute', requestObj)
          .then(function (res) {
-            console.log('Resposta do servidor:', res.data);
+            console.log("[Res]: ", res.data);
             return res.data;
          })
          .catch(function (error) {

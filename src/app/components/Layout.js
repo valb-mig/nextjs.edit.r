@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from "react";
-import { useGlobalContext } from '@/config/context/store';
+
+import { useGlobalContext } from '@/config/context/global/store';
 import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation'
 
 import Sidebar from "@/app/components/Sidebar";
 import Button  from "@/app/components/Button";
@@ -16,16 +18,13 @@ import getLanguage from '@/utils/helpers/getLanguage';
 
 const Layout = ({ children }) => {
     
-    const { addFile, removeFile, getFiles } = useFile();
-    const { file, setFile, storage, setStorage } = useGlobalContext();
+    const router = useRouter();
+
+    const { addFile, removeFile } = useFile();
+    const { storage, setStorage } = useGlobalContext();
 
     const [ modal, setModal ] = useState(false);
     const { handleSubmit, reset, register } = useForm();
-
-    const removeSelectedFile = () => {
-        removeFile();
-        setFile({});
-    }
 
     const submitForm = (form) => {
 
@@ -41,14 +40,6 @@ const Layout = ({ children }) => {
     }
 
     /* 
-    *   Get storage files
-    */
-
-    useEffect(() => {
-        setStorage(getFiles());
-    },[]);
-
-    /* 
     *   Keyboard actions
     */
 
@@ -57,9 +48,7 @@ const Layout = ({ children }) => {
 
             if (event.key === 'H' && event.shiftKey) {
 
-                if(file !== false) {
-                    setFile({});
-                }
+                router.push('/');
                 console.info('[shift + H ]: Go Home');
 
             } else if(event.key === 'N' && event.shiftKey && event.altKey) {
@@ -67,12 +56,6 @@ const Layout = ({ children }) => {
                 setModal(!modal);
                 console.info('[shift + N ]: New file');
 
-            } else if(event.key === 'W' && event.shiftKey && event.altKey) {
-
-                if(file !== false) {
-                    removeSelectedFile();
-                    console.info('[shift + alt + W ]: Delete file');
-                }
             }
         }
 
@@ -80,32 +63,34 @@ const Layout = ({ children }) => {
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
         };
-    }, [file, modal]);
+    }, [modal]);
 
     return (
         <>
             <Sidebar.Root>
                 <Sidebar.Body>
                     <Button 
-                        OnClick={() => setFile({})}
+                        OnClick={() => { router.push('/') }}
                         Icon={<Icon.Home/>}
                         Title="Home"
+                        Format="full"
                     />
                     <Button 
                         OnClick={() => setModal(!modal)}
                         Icon={<Icon.File/>}
                         Title="Add file"
+                        Format="full"
                     />
                     <Sidebar.Section Title="Files">
                         {storage.length > 0 ? (
                             storage.map((value, index) => (
                                 <Button 
                                     key={index}
-                                    OnClick={() => setFile(value)}
+                                    OnClick={() => router.push('/edit/'+index)}
                                     Icon={getLanguage(value.type).icon}
                                     Title={value.name+'.'+value.type}
-                                    Selected={(file.name+'.'+file.type) == (value.name+'.'+value.type)}
-                                    Style="justify-content-start"
+                                    // Selected={(file.name+'.'+file.type) == (value.name+'.'+value.type)}
+                                    Format="full"
                                 />
                             ))
                         ):(
@@ -118,13 +103,13 @@ const Layout = ({ children }) => {
             </Sidebar.Root>
 
             <Modal.Root Id="command-palette" Show={modal}>
-                <form className="d-flex gap-2 flex-column p-2 w-[30vw] mb-[80vh] rounded bg-dark-0 border-[1px] border-dark-1" onSubmit={handleSubmit(submitForm)}>
+                <form className="flex gap-2 flex-col p-2 w-[30vw] mb-[80vh] rounded bg-dark-0 border-[1px] border-dark-1" onSubmit={handleSubmit(submitForm)}>
                     <Input Icon={<Icon.Comma/>} Name="commandInput" formState={register}/>
                     <button type="submit"/>
                 </form>
             </Modal.Root>
 
-            <section id="content" className="flex flex-column w-full bg-dark-0 overflow-x-hidden">
+            <section id="content" className="flex flex-col bg-dark-0 w-full overflow-x-hidden">
                 { children }
             </section>
         </>

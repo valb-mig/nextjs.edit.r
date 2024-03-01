@@ -1,18 +1,21 @@
 import React from "react";
 
-const Button = ({ OnClick, Title, Icon, Selected, Type, Style }) => {
+const Button = ({ OnClick, Title, Icon, Type, Style, Format }) => {
 
     return (
         <button 
             onClick={OnClick}
-            className={"flex align-items-center text-white rounded h-[40px] border-[1px] hover:border-[1px] hover:border-dark-3"+(
-                Selected == true ? " bg-dark-1 border-[1px] border-dark-3" : " border-dark-0"
-            )+(
-                Type == 'submit' ? " border-[1px] border-dark-1" : ""
-            )}
             type={Type}
+            className="flex"
         >
-            <div className={"flex align-items-center "+Style+" m-2 gap-2"}>
+            <div className={"flex p-2 gap-2 align-items-center rounded border-[1px]"+(
+                Style == "primary" ? 
+                    " text-dark-0 bg-light-2 border-[1px] border-light-0 hover:bg-light-1 hover:border-[1px] hover:border-light-3" 
+                    : 
+                    " text-white bg-dark-0 border-[1px] border-dark-1 hover:bg-dark-1 hover:border-[1px] hover:border-dark-2")+(
+                Format == "full" ? " w-full " : ""      
+                )
+                }>
                 <span>{Icon}</span>{Title}
             </div>
         </button>

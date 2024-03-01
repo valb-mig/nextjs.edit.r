@@ -41,7 +41,8 @@ import {
 } from 'react-icons/fa';
 
 import { 
-    IoMdCloseCircle 
+    IoIosInformationCircle,
+    IoMdClose
 } from "react-icons/io";
 
 import { 
@@ -50,19 +51,13 @@ import {
 
 import { BiMinus } from "react-icons/bi";
 
+import { GoDotFill } from "react-icons/go";
+
 const Icon = {
     Tag:        AiFillTag,
-    Sun:        BsFillSunFill,
-    Moon:       BsFillMoonFill,
-    Close:      IoMdCloseCircle,
-    Grid:       AiOutlineMenu,
-    User:       BiSolidUserCircle,
-    Search:     FaMagnifyingGlass,
+    Close:      IoMdClose,
     Home:       AiFillHome,
-    Plus:       FaPlus,
     Folder:     BiSolidFolderOpen,
-    Dot:        BsDot,
-    Hash:       MdOutlineGrid3X3,
     Trash:      FaTrash,
     Check:      AiOutlineCheck,
     Drag:       MdDragIndicator,
@@ -73,7 +68,9 @@ const Icon = {
     Gear:       FaGear,
     Comma:      FiCommand,
     Execute:    FaCaretRight,
-    Minus:      BiMinus
+    Minus:      BiMinus,
+    Info:       IoIosInformationCircle,
+    Dot:        GoDotFill
 }
 
 export default Icon;

@@ -8,3 +8,37 @@ body {
     height:  100vh;
     margin:  0;
 }
+
+#terminal {
+    position: relative;
+}
+  
+.typing-animation {
+    display: inline-block;
+    overflow: hidden;
+}
+  
+.output-text {
+    display: inline-block;
+    color: white;
+}
+  
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+  
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange }
+}
+  
+span.cursor {
+    border-right: .15em solid orange;
+    animation: blink-caret 1s step-end infinite;
+}
+
+span.run {
+    color: orange;
+}
+  
