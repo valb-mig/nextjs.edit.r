@@ -30,3 +30,11 @@ git clone https://github.com/valb-mig/edit.r
 pnpm install
 pnpm run dev
 ```
+# 💡 To-Do
+
+Here are some features and improvements that can be added to enhance Edit.r:
+
+- [ ] Implement a folder system to organize files effectively within the editor.
+    - [ ] Develop a functional terminal within the editor interface for users to execute commands seamlessly.
+- [ ] Improve the debugging functionality to provide users with a more intuitive and efficient debugging experience.
+- [ ] Integrate a command palette feature with a variety of commands to enhance user productivity and navigation within the editor.
