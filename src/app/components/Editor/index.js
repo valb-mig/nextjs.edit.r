@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { useGlobalContext } from '@/config/context/global/store';
 
 import MonacoEditor, { loader } from '@monaco-editor/react';
 import useFile      from '@/app/hooks/useFile';

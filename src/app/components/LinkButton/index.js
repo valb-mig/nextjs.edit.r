@@ -1,6 +1,8 @@
 import React from "react";
 
-const Button = ({ OnClick, Title, Icon, Type, Style, Format }) => {
+import Link from 'next/link'
+
+const LinkButton = ({ Url, Title, Icon, Type, Style, Format }) => {
     let buttonClasses = "flex p-2 gap-2 align-items-center rounded border-[1px] ";
 
     switch (Format) {
@@ -20,8 +22,8 @@ const Button = ({ OnClick, Title, Icon, Type, Style, Format }) => {
         "text-white bg-dark-0 border-[1px] border-dark-1 hover:bg-dark-1 hover:border-[1px] hover:border-dark-2";
 
     return (
-        <button 
-            onClick={OnClick}
+        <Link 
+            href={Url}
             type={Type}
             className={buttonClasses}
         >
@@ -29,8 +31,8 @@ const Button = ({ OnClick, Title, Icon, Type, Style, Format }) => {
                 <span>{Icon}</span>
                 {Title}
             </div>
-        </button>
+        </Link>
     );
 }
 
-export default Button;
+export default LinkButton;

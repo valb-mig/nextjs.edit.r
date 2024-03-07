@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useGlobalContext } from '@/config/context/global/store';
 
 import executeCode from '@/utils/api/piston';
@@ -10,46 +10,60 @@ import Icon   from "@/config/icons";
 
 const Terminal = ({ file }) => {
 
-    const { terminal, setTerminal }   = useGlobalContext();
-    const [ typedText, setTypedText ] = useState('');
+    const { terminal, setTerminal } = useGlobalContext();
+
+    const [ typedOutput, setTypedOutput ] = useState('');
+    const [ typedDebug, setTypedDebug ] = useState('');
+
+    const [ terminalSection, setTerminalSection ] = useState('Output');
 
     const runCode = async () => {
 
-        setTypedText('');
+        setTypedOutput('');
+        setTypedDebug('');
 
         if(file.body !== "")
         {
             let response = await executeCode(file);
+            let codeResponse = {};
 
-            if(response.run.output === undefined)
+            if(response.run.stdout === undefined || response.run.stdout === '')
             {
-                setTerminal({
-                    ...terminal, 
-                    debug: response.run.stderr
-                })
+                codeResponse = {
+                    type: 'debug',
+                    value: response.run.stderr
+                };
             }
             else
             {
-                setTerminal({
-                    ...terminal, 
-                    output: response.run.output
-                })
-    
-                let count = 1;
-    
-                const intervalId = setInterval(() => {
-    
-                    setTypedText(
-                        response.run.output.substring(0, count)
-                    );
-    
-                    count++;
-                }, 50);
-    
-                setTimeout(() => {
-                    clearInterval(intervalId);
-                }, response.run.output.length * 50);
+                codeResponse = {
+                    type: 'output',
+                    value: response.run.stdout
+                };
             }
+
+            setTerminal({
+                ...terminal, 
+                [codeResponse.type]: codeResponse.value
+            })
+
+            let count = 1;
+    
+            const intervalId = setInterval(() => {
+                if(codeResponse.type == "output")
+                {
+                    setTypedOutput(codeResponse.value.substring(0, count));
+                }
+                else if(codeResponse.type == "debug")
+                {
+                    setTypedDebug(codeResponse.value.substring(0, count));
+                }
+                count++;
+            }, 50);
+
+            setTimeout(() => {
+                clearInterval(intervalId);
+            }, codeResponse.value.length * 50);
         }
     }
 
@@ -60,18 +74,37 @@ const Terminal = ({ file }) => {
             </div>
             <div id="terminal" className="h-[20vh] border-t-[1px] border-t-dark-3 bg-dark-0 p-2 text-white">
                 <header className="flex items-center justify-between mb-2">
+
                     <div className="flex items-center gap-3">
-                        <span className="text-smcursor-pointer">Output</span>
-                        <span className="text-sm text-zinc-700 hover:text-white cursor-pointer">Terminal</span>
-                        <span className="text-sm text-zinc-700 hover:text-white cursor-pointer">Debug</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        {/* <Icon.Minus className="cursor-pointer" onClick={() => setOpen(!open)}/> */}
+                        {['Output', 'Debug'].map((section, index) => (
+                            <div key={index} className="flex">
+                                <span className="text-sm cursor-pointer" onClick={() => setTerminalSection(section)}>
+                                    {section}
+                                </span>
+                                {section == 'Output' && typedOutput != '' ? (
+                                    <Icon.Dot className="animate-pulse"/>
+                                ): section == 'Debug' && typedDebug != '' ? (
+                                    <Icon.Dot className="text-red-500 animate-ping"/>
+                                ):null}
+                            </div>
+                        ))}
                     </div>
                 </header>
-                <span id="typing" className="typing-animation break-words w-full">
-                    <span className="run">{">> "}</span>{typedText}<span className="cursor"/>
-                </span>
+
+                <section id="terminal-content">
+                    <span id="typing" className="typing-animation break-words w-full">
+                        {terminalSection === "Output" ? (
+                            <span>
+                                <span className="run">{'>> '}</span>{typedOutput}
+                            </span>
+                        ) : terminalSection === "Debug" ? (
+                            <span>
+                                <span className="debug">{'[!] '}</span>{typedDebug}
+                            </span>
+                        ) : null}
+                        <span className="cursor"/>
+                    </span>
+                </section>
             </div>
         </div>
     )

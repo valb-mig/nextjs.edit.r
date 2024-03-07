@@ -5,7 +5,7 @@ const SidebarRoot = ({children}) => {
                 {children}
             </div>
             <span className="flex justify-content-center w-100 text-dark-3">
-                <small><i>made by mig</i></small>
+                <a href="https://github.com/valb-mig/edit.r" target="__blank"><small><i>made by valb.mig</i></small></a>
             </span>
         </div>
     );
