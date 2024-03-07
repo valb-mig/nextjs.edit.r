@@ -17,7 +17,7 @@ const getLanguage = (extension) => {
       case 'php':
         language.name    = "php",
         language.icon    = <Icon.Php/>
-        language.version = ""
+        language.version = "8.2.3"
         break;
       case 'txt':
         language.name    = "markdown",
