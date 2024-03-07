@@ -2,13 +2,13 @@
 
 import React from "react";
 
-import Layout from "@/app/components/Layout";
-import Tag    from "@/app/components/Tag";
+import PageTemplate from "@/app/components/PageTemplate";
+import Tag from "@/app/components/Tag";
 
 const Home = () => {
     
     return (
-        <Layout>
+        <PageTemplate>
             <div className="flex justify-content-center w-100">
                 <div className="text-white mt-[30vh]">
                     <h2 className="flex justify-content-center border-b-[1px] text-[4em] border-dark-5">edit.r</h2>
@@ -22,7 +22,7 @@ const Home = () => {
                     </section>
                 </div>
             </div>
-        </Layout>
+        </PageTemplate>
     );
 }
 
