@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from "react";
-import { useRouter } from 'next/navigation';
+import React from "react";
 
 import { useGlobalContext } from '@/config/context/global/store';
 
@@ -10,13 +9,11 @@ import Icon    from "@/config/icons";
 
 import getLanguage from '@/utils/helpers/getLanguage';
 
-import Layout   from "@/app/components/Layout";
-import Editor   from "@/app/components/Editor";
-import Terminal from "@/app/components/Terminal";
+import PageTemplate from "@/app/components/PageTemplate";
+import Editor       from "@/app/components/Editor";
+import Terminal     from "@/app/components/Terminal";
 
 const Edit = ({ params }) => {
-
-    const router = useRouter();
 
     const { storage } = useGlobalContext();
     const { removeFile } = useFile();
@@ -26,7 +23,7 @@ const Edit = ({ params }) => {
     const removeSelectedFile = () => { removeFile(file) }
 
     return (
-        <Layout>
+        <PageTemplate>
             {file != undefined && (
                 <div className="flex flex-col w-full h-full overflow-y-hidden relative">
                     <nav className="flex justify-content-between align-items-center bg-dark-1 gap-2 border-b-[20px] border-dark-0">
@@ -37,7 +34,7 @@ const Edit = ({ params }) => {
                                 {file.state == "static" ? (
                                     <Icon.Close onClick={() => removeSelectedFile()}/>
                                 ):(
-                                    <Icon.Dot/>
+                                    <Icon.Dot className="animate-pulse"/>
                                 )}
                             </span>
                         </div>
@@ -46,7 +43,7 @@ const Edit = ({ params }) => {
                     <Terminal file={file}/>                    
                 </div>
             )}
-        </Layout>
+        </PageTemplate>
     );
 }
 
