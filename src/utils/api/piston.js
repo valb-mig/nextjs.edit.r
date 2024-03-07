@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import getLanguage from '@/utils/helpers/getLanguage';
 
-const apiUrl = 'https://emkc.org/api/v2/piston';
+const apiUrl = process.env.NEXT_PUBLIC_API_PISTON_URL;
 
 async function executeCode(file) {
 
