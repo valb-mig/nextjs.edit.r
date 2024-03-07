@@ -37,7 +37,8 @@ import {
 import {
     FaPlus,
     FaPhp,
-    FaMarkdown
+    FaMarkdown,
+    FaTerminal
 } from 'react-icons/fa';
 
 import { 
@@ -70,7 +71,8 @@ const Icon = {
     Execute:    FaCaretRight,
     Minus:      BiMinus,
     Info:       IoIosInformationCircle,
-    Dot:        GoDotFill
+    Dot:        GoDotFill,
+    Terminal:   FaTerminal
 }
 
 export default Icon;
