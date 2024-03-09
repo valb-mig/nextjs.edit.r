@@ -1,18 +1,18 @@
 [
-    {
-        "icon":  "+",
-        "title": "'name.js' [create]"
-    },
-    {
-        "icon":  ">",
-        "title": "'run' [commands]"
-    },
-    {
-        "icon":  "-",
-        "title": "'name.js' [remove]"
-    },
-    {
-        "icon":  "+/",
-        "title": "'folder name' [create]"
-    }
+  {
+    "icon": "+",
+    "title": "'name.js' [create]"
+  },
+  {
+    "icon": ">",
+    "title": "'run' [commands]"
+  },
+  {
+    "icon": "-",
+    "title": "'name.js' [remove]"
+  },
+  {
+    "icon": "+/",
+    "title": "'folder name' [create]"
+  }
 ]

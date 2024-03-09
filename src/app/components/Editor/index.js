@@ -1,69 +1,69 @@
-'use client'
+"use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import MonacoEditor, { loader } from '@monaco-editor/react';
-import useFile      from '@/app/hooks/useFile';
-import getLanguage  from '@/utils/helpers/getLanguage';
+import MonacoEditor, { loader } from "@monaco-editor/react";
+import useFile from "@/app/hooks/useFile";
+import getLanguage from "@/utils/helpers/getLanguage";
 
 const Editor = ({ file }) => {
-
   const { editFile } = useFile();
 
   const [code, setCode] = useState(file.body);
 
   useEffect(() => {
-    console.log("[Editor]: "+file.name+"."+file.type);
-    setCode(file.body)
+    console.log("[Editor]: " + file.name + "." + file.type);
+    setCode(file.body);
   }, [file]);
 
   const editCode = (newValue) => {
-    
     setCode(newValue);
 
-    if(file.state == "static")
-    {
-      editFile(file, {...file, state:"modified"});
+    if (file.state == "static") {
+      console.log(file);
+      editFile(file, { ...file, state: "modified" });
     }
-  }
+  };
 
-  /* 
-  *   Keyboard Actions 
-  */
+  /*
+   *   Keyboard Actions
+   */
 
   useEffect(() => {
     function handleKeyDown(event) {
-        if ((event.key === 's' || event.key === 'S') && event.ctrlKey) {
-          editFile(file, {...file, body:code, state:"static"});
-          event.preventDefault();
-        }
+      if ((event.key === "s" || event.key === "S") && event.ctrlKey) {
+        editFile(file, { ...file, body: code, state: "static" });
+        event.preventDefault();
+      }
     }
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
+    // If editFile is on effect, the component will be rendered over and over again
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file, code]);
 
-  /* 
-  *   Component 
-  */
+  /*
+   *   Component
+   */
 
   loader.init().then((monaco) => {
-    monaco.editor.defineTheme('myTheme', {
-        base: 'vs-dark',
-        inherit: true,
-        rules: [],
-        colors: {
-            'editor.background': '#000000',
-        },
+    monaco.editor.defineTheme("myTheme", {
+      base: "vs-dark",
+      inherit: true,
+      rules: [],
+      colors: {
+        "editor.background": "#000000",
+      },
     });
   });
 
   return (
     <MonacoEditor
-      theme='myTheme'
-      language={getLanguage(file.type).name} 
+      theme="myTheme"
+      language={getLanguage(file.type).name}
       value={file.body}
       onChange={(newValue, e) => editCode(newValue)}
       options={{
@@ -71,8 +71,8 @@ const Editor = ({ file }) => {
         fontFamily: "CaskaydiaCove Nerd Font",
         fontSize: 20,
         minimap: {
-          enabled: false 
-        }
+          enabled: false,
+        },
       }}
     />
   );
