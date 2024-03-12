@@ -21,7 +21,7 @@ import Icon from "@/config/icons";
 
 import getLanguage from "@/utils/helpers/getLanguage";
 
-const PageTemplate = ({ children }) => {
+const AppLayout = ({ children }) => {
   const router = useRouter();
 
   const { runPalette } = useCommandPalette();
@@ -186,4 +186,4 @@ const PageTemplate = ({ children }) => {
   );
 };
 
-export default PageTemplate;
+export default AppLayout;

@@ -9,7 +9,6 @@ import Icon from "@/config/icons";
 
 import getLanguage from "@/utils/helpers/getLanguage";
 
-import PageTemplate from "@/app/components/PageTemplate";
 import Editor from "@/app/components/Editor";
 import Terminal from "@/app/components/Terminal";
 
@@ -24,7 +23,7 @@ const Edit = ({ params }) => {
   };
 
   return (
-    <PageTemplate>
+    <>
       {file != undefined && (
         <div className="flex flex-col w-full h-full overflow-y-hidden relative">
           <nav className="flex justify-content-between align-items-center bg-dark-1 gap-2 border-b-[20px] border-dark-0">
@@ -44,7 +43,7 @@ const Edit = ({ params }) => {
           <Terminal file={file} />
         </div>
       )}
-    </PageTemplate>
+    </>
   );
 };
 
