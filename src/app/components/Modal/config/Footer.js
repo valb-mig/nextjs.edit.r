@@ -1,5 +1,5 @@
 const ModalFooter = ({ children }) => {
-  return <></>;
+    return <></>;
 };
 
 export default ModalFooter;

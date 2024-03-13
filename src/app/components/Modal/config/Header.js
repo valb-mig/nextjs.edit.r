@@ -1,5 +1,5 @@
 const ModalHeader = ({ children }) => {
-  return <></>;
+    return <></>;
 };
 
 export default ModalHeader;
