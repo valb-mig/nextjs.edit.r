@@ -1,7 +1,7 @@
 [
   {
     "icon": "+",
-    "title": "'name.js' [create]"
+    "title": "'name.js(/path/to/folder)' [create]"
   },
   {
     "icon": ">",
