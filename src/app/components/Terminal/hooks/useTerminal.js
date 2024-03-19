@@ -38,11 +38,11 @@ const useTerminal = (file, setTerminal, setTypedDebug, setTypedOutput) => {
                     setTypedDebug(codeResponse.value.substring(0, count));
                 }
                 count++;
-            }, 50);
+            }, 10);
 
             setTimeout(() => {
                 clearInterval(intervalId);
-            }, codeResponse.value.length * 50);
+            }, codeResponse.value.length * 10);
         }
     };
 

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useGlobalContext } from "@/config/context/global/store";
+import { Panel, PanelResizeHandle } from 'react-resizable-panels';
 
 import useTerminal from "@/app/components/Terminal/hooks/useTerminal";
 
@@ -19,31 +20,34 @@ const Terminal = ({ file }) => {
         file,
         setTerminal,
         setTypedDebug,
-        setTypedOutput,
+        setTypedOutput
     );
 
     return (
-        <div className="absolute bottom-0 w-full flex flex-col">
-            <div className="flex w-full justify-content-end p-2">
+        <Panel maxSize={75} className="relative pt-2">
+            <div className="absolute z-1 right-[5px] top-[15px]">
                 <Button
-                    Icon={<Icon.Execute />}
+                    Icon={<Icon.Execute/>}
                     Title="run"
                     OnClick={() => {
                         runCode();
                     }}
                     Type="primary"
                 />
-            </div>
+            </div> 
+            <PanelResizeHandle id="grabber" className="absolute top-[1px] left-[50%] text-white bg-dark-3 px-2 rounded z-3 cursor-row-resize">
+                <Icon.Grab />
+            </PanelResizeHandle>
             <div
                 id="terminal"
-                className="h-[20vh] border-t-[1px] border-t-dark-3 bg-dark-0 p-2 text-white"
-            >
+                className="h-[20vh] border-t-[1px] border-t-dark-3 bg-dark-0 p-2 text-white overflow-y-scroll"
+            >                
                 <header className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
                         {["Output", "Debug"].map((section, index) => (
                             <div key={index} className="flex">
                                 <span
-                                    className="text-sm cursor-pointer"
+                                    className={"text-sm cursor-pointer p-1 rounded hover:bg-dark-1" + (terminalSection == section ? " bg-dark-1" : "")}
                                     onClick={() => setTerminalSection(section)}
                                 >
                                     {section}
@@ -78,7 +82,7 @@ const Terminal = ({ file }) => {
                     </span>
                 </section>
             </div>
-        </div>
+        </Panel>
     );
 };
 

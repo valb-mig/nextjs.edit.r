@@ -3,6 +3,7 @@
 import React from "react";
 
 import { useGlobalContext } from "@/config/context/global/store";
+import { Panel, PanelGroup } from 'react-resizable-panels';
 
 import useFile from "@/app/hooks/useFile";
 import Icon from "@/config/icons";
@@ -41,8 +42,12 @@ const Edit = ({ params }) => {
                             </span>
                         </div>
                     </nav>
-                    <Editor file={file} />
-                    <Terminal file={file} />
+                    <PanelGroup>
+                        <Panel maxSize={75}>
+                            <Editor file={file} />
+                        </Panel>
+                        <Terminal file={file} />
+                    </PanelGroup>
                 </div>
             ) : (
                 <div className="flex flex-col w-full h-full items-center justify-center">

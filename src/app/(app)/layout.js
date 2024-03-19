@@ -13,6 +13,7 @@ import TreeView from "@/app/components/TreeView";
 
 import searchItemsJSON from "@/config/json/search_items.json";
 import useCommandPalette from "@/app/hooks/useCommandPalette";
+
 import Icon from "@/config/icons";
 
 const AppLayout = ({ children }) => {
@@ -92,14 +93,14 @@ const AppLayout = ({ children }) => {
                         />
                     </div>
                     <Sidebar.Section Title="Files">
-                        <TreeView.Root FilePath={usePathname()} />
+                        <TreeView FilePath={usePathname()} />
                     </Sidebar.Section>
                 </Sidebar.Body>
             </Sidebar.Root>
 
             <Modal.Root Id="command-palette" Show={modal}>
                 <form
-                    className="flex gap-2 flex-col p-2 w-[30vw] rounded bg-dark-0 border-[1px] border-dark-1"
+                    className="flex gap-2 flex-col p-2 w-full mx-2 md:w-[30vw] rounded bg-dark-0 border-[1px] border-dark-1"
                     onSubmit={submitForm}
                 >
                     <Input
