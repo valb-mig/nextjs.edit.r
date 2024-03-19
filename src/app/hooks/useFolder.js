@@ -1,7 +1,10 @@
 import { useGlobalContext } from "@/config/context/global/store";
 import getRandomHash from "@/utils/helpers/getRandomHash";
+import useFile from "@/app/hooks/useFile";
 
 const useFolder = () => {
+    
+    const { getFiles } = useFile();
     const { storage, setStorage } = useGlobalContext();
 
     const getFolders = () => {
@@ -65,11 +68,22 @@ const useFolder = () => {
     };
 
     const removeFolder = (folder, path) => {
-        console.log("[Remove]: " + path + folder);
-        localStorage.removeItem("folder[" + folder + "]");
+        
+        console.log("[Remove]: " + path + folder.key);
+
+        localStorage.removeItem("folder[" + folder.key + "]");
+
+        getFiles().map((file, index) => {
+            if(file.path === path+folder.name){
+                localStorage.removeItem("file["+file.name+'.'+file.type+"]");
+            }
+        });
 
         // Update home useState
-        setStorage({ ...storage, folders: getFolders() });
+        setStorage({ 
+            files: getFiles(), 
+            folders: getFolders() 
+        });
     };
 
     return { getFolders, addFolder, removeFolder };
