@@ -1,5 +1,5 @@
 const ModalBody = ({ children }) => {
-    return <></>;
+	return <></>;
 };
 
 export default ModalBody;

@@ -3,60 +3,60 @@
 @tailwind utilities;
 
 :root {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
 }
 
 #terminal {
-  position: relative;
+	position: relative;
 }
 
 .typing-animation {
-  display: inline-block;
-  overflow: hidden;
+	display: inline-block;
+	overflow: hidden;
 }
 
 .output-text {
-  display: inline-block;
-  color: white;
+	display: inline-block;
+	color: white;
 }
 
 @keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
 }
 
 @keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: orange;
-  }
+	from,
+	to {
+		border-color: transparent;
+	}
+	50% {
+		border-color: orange;
+	}
 }
 
 span.cursor {
-  border-right: 0.15em solid orange;
-  animation: blink-caret 1s step-end infinite;
+	border-right: 0.15em solid orange;
+	animation: blink-caret 1s step-end infinite;
 }
 
 span.run {
-  color: orange;
+	color: orange;
 }
 
 span.debug {
-  color: red;
+	color: red;
 }
