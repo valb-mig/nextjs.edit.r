@@ -6,10 +6,12 @@ const Tag = ({ Icon, Title, OnClick }) => {
         >
             {Icon != undefined ? (
                 <>
-                    <div className="flex justify-center items-center h-[2rem] w-[2rem] bg-dark-1 border-1 mr-2 border-dark-2 rounded">
+                    <div className="flex justify-center items-center h-[2rem] w-[2rem] bg-dark-1 border-1 border-dark-2 rounded">
                         {Icon}
                     </div>
-                    <span className="text-[0.8rem]">{Title}</span>
+                    <span className="text-[0.8rem] ml-2">
+                        {Title}
+                    </span>
                 </>
             ) : (
                 <div className="flex justify-center items-center p-1 bg-dark-1 border-1 border-dark-2 rounded text-sm">

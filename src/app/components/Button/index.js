@@ -19,7 +19,7 @@ const button = tv({
     },
 });
 
-const Button = ({ OnClick, Title, Icon, Type, Attributes, children }) => {
+const Button = ({ OnClick, Title, Icon, Type, Attributes, Disabled, children }) => {
     return (
         <button
             onClick={OnClick}
@@ -28,6 +28,7 @@ const Button = ({ OnClick, Title, Icon, Type, Attributes, children }) => {
                 type: Type,
                 format: Attributes != undefined ? Attributes.format : "",
             })}
+            disabled={Disabled}
         >
             <div className="flex gap-1 items-center justify-center w-full">
                 <span>{Icon}</span>

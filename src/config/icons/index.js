@@ -21,6 +21,8 @@ import { IoLogoJavascript } from "react-icons/io5";
 
 import { BiMinus } from "react-icons/bi";
 
+import { VscGrabber } from "react-icons/vsc";
+
 import { GoDotFill } from "react-icons/go";
 
 const Icon = {
@@ -44,6 +46,7 @@ const Icon = {
     Info: IoIosInformationCircle,
     Dot: GoDotFill,
     Terminal: FaTerminal,
+    Grab: VscGrabber
 };
 
 export default Icon;
