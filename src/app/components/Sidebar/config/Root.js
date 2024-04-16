@@ -13,7 +13,7 @@ const SidebarRoot = ({ children }) => {
 					<div className="flex flex-col">{children}</div>
 					<span className="flex justify-content-center w-100">
 						<a
-							href="https://github.com/valb-mig/edi t.r"
+							href="https://github.com/valb-mig/nextjs.edit.r"
 							target="__blank"
 							className="text-dark-3 no-underline"
 						>

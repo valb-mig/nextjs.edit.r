@@ -9,7 +9,7 @@ import getLanguage from "@/utils/helpers/getLanguage";
 const Editor = ({ file }) => {
 	const { editFile } = useFile();
 
-	const [code, setCode] = useState(file.body);
+	const [code, setCode] = useState();
 
 	useEffect(() => {
 		console.log("[Editor]: " + file.name + "." + file.type);
@@ -17,12 +17,8 @@ const Editor = ({ file }) => {
 	}, [file]);
 
 	const editCode = (newValue) => {
+		console.info("[Changed]: ", newValue);
 		setCode(newValue);
-
-		if (file.state == "static") {
-			console.log(file);
-			editFile(file, { ...file, state: "modified" });
-		}
 	};
 
 	/*
