@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "@/config/context/global/store";
 import { Panel, PanelResizeHandle } from "react-resizable-panels";
 
@@ -10,17 +10,14 @@ import Button from "@/app/components/Button";
 import Icon from "@/config/icons";
 
 const Terminal = ({ file }) => {
-	const { terminal, setTerminal } = useGlobalContext();
-	const [typedOutput, setTypedOutput] = useState("");
-	const [typedDebug, setTypedDebug] = useState("");
 
-	const [terminalSection, setTerminalSection] = useState("Output");
+	const { terminal, setTerminal } = useGlobalContext();
+	const [ terminalSection, setTerminalSection ] = useState("Output");
 
 	const { runCode } = useTerminal(
 		file,
-		setTerminal,
-		setTypedDebug,
-		setTypedOutput,
+		terminal,
+		setTerminal
 	);
 
 	return (
@@ -60,9 +57,9 @@ const Terminal = ({ file }) => {
 								>
 									{section}
 								</span>
-								{section == "Output" && typedOutput != "" ? (
+								{section == "Output" && terminal.output !== "" ? (
 									<Icon.Dot className="animate-pulse" />
-								) : section == "Debug" && typedDebug != "" ? (
+								) : section == "Debug" && terminal.debug !== "" ? (
 									<Icon.Dot className="text-red-500 animate-ping" />
 								) : null}
 							</div>
@@ -76,14 +73,14 @@ const Terminal = ({ file }) => {
 						className="typing-animation break-words w-full"
 					>
 						{terminalSection === "Output" ? (
-							<span>
+							<span className="flex gap-1 items-center">
 								<span className="run">{">> "}</span>
-								{typedOutput}
+								<p className="text-sm text-dark-3">~{file.path}</p>{terminal.output}
 							</span>
 						) : terminalSection === "Debug" ? (
 							<span>
 								<span className="debug">{"[!] "}</span>
-								{typedDebug}
+								{terminal.debug}
 							</span>
 						) : null}
 						<span className="cursor" />

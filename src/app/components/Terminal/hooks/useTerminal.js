@@ -1,9 +1,13 @@
 import executeCode from "@/utils/api/piston";
 
-const useTerminal = (file, setTerminal, setTypedDebug, setTypedOutput) => {
+const useTerminal = (file, terminal, setTerminal) => {
 	const runCode = async () => {
-		setTypedOutput("");
-		setTypedDebug("");
+
+		setTerminal({
+			...terminal,
+			output: "",
+			debug:  ""
+		});
 
 		if (file.body !== "") {
 			let response = await executeCode(file);
@@ -28,21 +32,6 @@ const useTerminal = (file, setTerminal, setTypedDebug, setTypedOutput) => {
 				...terminal,
 				[codeResponse.type]: codeResponse.value,
 			});
-
-			let count = 1;
-
-			const intervalId = setInterval(() => {
-				if (codeResponse.type == "output") {
-					setTypedOutput(codeResponse.value.substring(0, count));
-				} else if (codeResponse.type == "debug") {
-					setTypedDebug(codeResponse.value.substring(0, count));
-				}
-				count++;
-			}, 10);
-
-			setTimeout(() => {
-				clearInterval(intervalId);
-			}, codeResponse.value.length * 10);
 		}
 	};
 

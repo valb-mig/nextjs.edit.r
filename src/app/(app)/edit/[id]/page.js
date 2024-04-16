@@ -14,14 +14,11 @@ import Editor from "@/app/components/Editor";
 import Terminal from "@/app/components/Terminal";
 
 const Edit = ({ params }) => {
+	
 	const { storage } = useGlobalContext();
 	const { removeFile } = useFile();
 
 	const file = storage.files[params.id];
-
-	const removeSelectedFile = () => {
-		removeFile(file);
-	};
 
 	return (
 		<>
@@ -31,10 +28,10 @@ const Edit = ({ params }) => {
 						<div className="flex gap-1 ml-10 rounded-t-lg bg-dark-0 text-light-0 p-2">
 							<span className="flex gap-1 align-items-center">
 								{getLanguage(file.type).icon}
-								{file.name}.{file.type}
+								{file.name}.{file.type} <span className="text-sm text-dark-3">~{file.path}</span>
 								{file.state == "static" ? (
 									<Icon.Close
-										onClick={() => removeSelectedFile()}
+										onClick={() => removeFile(file)}
 									/>
 								) : (
 									<Icon.Dot className="animate-pulse" />

@@ -16,7 +16,7 @@ const TreeView = ({ FilePath }) => {
 		<>
 			{storage.folders.length > 0
 				? storage.folders.map((folder, folderIndex) => (
-						<div key={folderIndex} className="flex flex-col">
+						<div key={folderIndex} className="flex flex-col w-full">
 							<Folder
 								Title={folder.name}
 								Path={"~" + folder.parent}

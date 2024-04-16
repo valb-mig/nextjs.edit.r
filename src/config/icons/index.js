@@ -8,7 +8,9 @@ import { BiSolidFolderOpen } from "react-icons/bi";
 
 import { FaTrash, FaFile, FaGear, FaCaretRight } from "react-icons/fa6";
 
-import { FaPhp, FaMarkdown, FaTerminal } from "react-icons/fa";
+import { FaPhp, FaMarkdown, FaJava, FaPython, FaRust, FaTerminal } from "react-icons/fa";
+
+import { SiLua, SiTypescript } from "react-icons/si";
 
 import {
 	BsLayoutSidebarInsetReverse,
@@ -37,6 +39,11 @@ const Icon = {
 	Drag: MdDragIndicator,
 	File: FaFile,
 	Javascript: IoLogoJavascript,
+	Java: FaJava,
+	Python: FaPython,
+	Lua: SiLua,
+	Rust: FaRust,
+	Typescript: SiTypescript,
 	Php: FaPhp,
 	Md: FaMarkdown,
 	Gear: FaGear,
