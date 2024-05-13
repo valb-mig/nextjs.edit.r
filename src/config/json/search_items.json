@@ -1,0 +1,18 @@
+[
+	{
+		"icon": "+",
+		"title": "'name.js(/path/to/folder)' [create]"
+	},
+	{
+		"icon": ">",
+		"title": "'run' [commands]"
+	},
+	{
+		"icon": "-",
+		"title": "'name.js' [remove]"
+	},
+	{
+		"icon": "+/",
+		"title": "'folder name' [create]"
+	}
+]

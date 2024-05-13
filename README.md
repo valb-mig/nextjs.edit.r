@@ -10,31 +10,34 @@ Get ready to dive into a world of coding excellence with Edit.r. Let's write, de
 
 ## 🤖 Technologies
 
-- **Tailwind:** A utility-first CSS framework for creating custom designs quickly.
-- **Next.js 14:** A React framework that enables server-side rendering and generating static websites for React-based web applications.
-- **Piston API:** A powerful code execution and compilation API.
+-   **Tailwind:** A utility-first CSS framework for creating custom designs quickly.
+-   **Next.js 14:** A React framework that enables server-side rendering and generating static websites for React-based web applications.
+-   **Piston API:** A powerful code execution and compilation API.
 
 # 🧪 Test it
+
 You can access the project on Vercel [here](https://edit-r.vercel.app/).
 
 # ⚙️ Instalation
+
 If you wan't to have the project in your machine:
 
 ```
 git clone https://github.com/valb-mig/edit.r
 ```
 
-- Pnpm
+-   Pnpm
 
 ```
 pnpm install
 pnpm run dev
 ```
+
 # 💡 To-Do
 
 Here are some features and improvements that can be added to enhance Edit.r:
 
-- [ ] Implement a folder system to organize files effectively within the editor.
-    - [ ] Develop a functional terminal within the editor interface for users to execute commands seamlessly.
-- [ ] Improve the debugging functionality to provide users with a more intuitive and efficient debugging experience.
-- [ ] Integrate a command palette feature with a variety of commands to enhance user productivity and navigation within the editor.
+-   [ ] Implement a folder system to organize files effectively within the editor.
+    -   [ ] Develop a functional terminal within the editor interface for users to execute commands seamlessly.
+-   [ ] Improve the debugging functionality to provide users with a more intuitive and efficient debugging experience.
+-   [ ] Integrate a command palette feature with a variety of commands to enhance user productivity and navigation within the editor.

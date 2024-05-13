@@ -1,76 +1,59 @@
-import { 
-    AiFillTag,
-    AiOutlineMenu,
-    AiFillHome,
-    AiOutlineCheck
-} from 'react-icons/ai';
+import { AiFillTag, AiFillHome, AiOutlineCheck } from "react-icons/ai";
 
-import { 
-    FiCommand 
-} from "react-icons/fi";
+import { FiCommand } from "react-icons/fi";
 
-import { 
-    BsFillSunFill,
-    BsFillMoonFill,
-    BsDot
-} from 'react-icons/bs';
+import { MdDragIndicator } from "react-icons/md";
 
-import { 
-    MdClose,
-    MdOutlineGrid3X3,
-    MdDragIndicator
-} from 'react-icons/md';
+import { BiSolidFolderOpen } from "react-icons/bi";
+
+import { FaTrash, FaFile, FaGear, FaCaretRight } from "react-icons/fa6";
+
+import { FaPhp, FaMarkdown, FaJava, FaPython, FaRust, FaTerminal } from "react-icons/fa";
+
+import { SiLua, SiTypescript } from "react-icons/si";
 
 import {
-    BiSolidUserCircle,
-    BiSolidFolderOpen
-} from 'react-icons/bi';
+	BsLayoutSidebarInsetReverse,
+	BsLayoutSidebarInset,
+} from "react-icons/bs";
 
-import {
-    FaMagnifyingGlass,
-    FaTrash,
-    FaFile,
-    FaGear,
-    FaCaretRight
-} from 'react-icons/fa6';
+import { IoIosInformationCircle, IoMdClose } from "react-icons/io";
 
-import {
-    FaPlus,
-    FaPhp,
-    FaMarkdown
-} from 'react-icons/fa';
-
-import { 
-    IoIosInformationCircle,
-    IoMdClose
-} from "react-icons/io";
-
-import { 
-    IoLogoJavascript 
-} from "react-icons/io5";
+import { IoLogoJavascript } from "react-icons/io5";
 
 import { BiMinus } from "react-icons/bi";
+
+import { VscGrabber } from "react-icons/vsc";
 
 import { GoDotFill } from "react-icons/go";
 
 const Icon = {
-    Tag:        AiFillTag,
-    Close:      IoMdClose,
-    Home:       AiFillHome,
-    Folder:     BiSolidFolderOpen,
-    Trash:      FaTrash,
-    Check:      AiOutlineCheck,
-    Drag:       MdDragIndicator,
-    File:       FaFile,
-    Javascript: IoLogoJavascript,
-    Php:        FaPhp,
-    Md:         FaMarkdown,
-    Gear:       FaGear,
-    Comma:      FiCommand,
-    Execute:    FaCaretRight,
-    Minus:      BiMinus,
-    Info:       IoIosInformationCircle,
-    Dot:        GoDotFill
-}
+	Tag: AiFillTag,
+	SidebarRight: BsLayoutSidebarInsetReverse,
+	SidebarLeft: BsLayoutSidebarInset,
+	Close: IoMdClose,
+	Home: AiFillHome,
+	Folder: BiSolidFolderOpen,
+	Trash: FaTrash,
+	Check: AiOutlineCheck,
+	Drag: MdDragIndicator,
+	File: FaFile,
+	Javascript: IoLogoJavascript,
+	Java: FaJava,
+	Python: FaPython,
+	Lua: SiLua,
+	Rust: FaRust,
+	Typescript: SiTypescript,
+	Php: FaPhp,
+	Md: FaMarkdown,
+	Gear: FaGear,
+	Comma: FiCommand,
+	Execute: FaCaretRight,
+	Minus: BiMinus,
+	Info: IoIosInformationCircle,
+	Dot: GoDotFill,
+	Terminal: FaTerminal,
+	Grab: VscGrabber,
+};
 
 export default Icon;
